@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import "./index.css"
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
+import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom"
 import ErrorPage from "./error-page.tsx"
 import Create from "./routes/create.tsx"
 import Play from "./routes/play.tsx"
@@ -14,11 +14,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Play />,
+        element: <Navigate to="/play" />,
+      },
+      {
+        path: "/play",
+        element: <Play random />,
       },
       {
         path: "/create",
         element: <Create />,
+      },
+      {
+        path: "/play/:id",
+        element: <Play id={0} />,
       },
     ],
   },

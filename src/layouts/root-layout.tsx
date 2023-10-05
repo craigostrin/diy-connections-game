@@ -9,8 +9,7 @@ function RootLayout() {
     <div className="ml-10">
       <nav className="mb-5">
         <NavLink
-          to={"/"}
-          end
+          to={"/play"}
           className={({ isActive, isPending }) =>
             isActive ? activeStyle : isPending ? pendingStyle : navStyle
           }
