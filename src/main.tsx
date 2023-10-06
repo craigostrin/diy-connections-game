@@ -2,10 +2,10 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 import "./index.css"
 import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom"
-import ErrorPage from "./error-page.tsx"
-import Create from "./routes/create.tsx"
-import Play from "./routes/play.tsx"
-import RootLayout from "./layouts/root-layout.tsx"
+import ErrorPage from "./ErrorPage.tsx"
+import Create from "./routes/Create.tsx"
+import Play from "./routes/Play.tsx"
+import RootLayout from "./layouts/RootLayout.tsx"
 
 const router = createBrowserRouter([
   {
