@@ -1,15 +1,33 @@
-import React from "react"
+import React, { FormEvent } from "react"
 
 function PuzzleCreator() {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    console.log("click")
+    event.preventDefault()
+    alert(event.timeStamp)
+  }
+
   const categories: React.ReactNode[] = []
   for (let i = 0; i < 4; i++) {
     categories.push(<CategoryCreator key={i} index={i} />)
-    if (i < 3) categories.push(<hr className="border-black" />)
+    if (i < 3)
+      categories.push(<hr key={"hr" + i} className="border-slate-400" />)
   }
 
   return (
     <>
-      <div className="border-2 border-black w-[600px]">{categories}</div>
+      <form
+        onSubmit={handleSubmit}
+        className="border-2 border-slate-400 rounded-md w-[600px]"
+      >
+        {categories}
+        <button
+          className="w-full mt-4 bg-pink-300 rounded-md px-4 py-2 border-pink-500 border-2 hover:bg-pink-400 active:bg-pink-500"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
     </>
   )
 }
@@ -56,7 +74,7 @@ function InputItem({ catIndex, index }: InputItemProps) {
 
   return (
     <>
-      <label htmlFor={ariaName} />
+      <label htmlFor={ariaName} hidden />
       <input
         name={ariaName}
         className="text-center p-4 m-2 border-2 rounded-md"
