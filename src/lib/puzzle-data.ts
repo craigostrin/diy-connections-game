@@ -1,36 +1,28 @@
 const AUTHOR_INPUT_INDEX = 20
 
-type PuzzleData = {
-  author?: string
-  puzzle: CategoryData[]
-}
-
-type CategoryData = {
+export type PuzzleData = CategoryData[]
+export type CategoryData = {
   description: string
   answers: string[]
 }
 
-// Extremely hard-coded
+//TODO validation: each answer and desc should be unique
+// Extremely hard-coded for 4x4 puzzle
 export function formatPuzzleData(formData: FormData): PuzzleData {
   //* Map values to array for easier iterating
   const arr = values2array(formData)
 
-  let data: PuzzleData = {
-    author: "anonymous",
-    puzzle: [],
-  }
+  let puzzle: PuzzleData = []
 
   for (let i = 0; i < AUTHOR_INPUT_INDEX; i += 5) {
     const category: CategoryData = {
       description: arr[i],
       answers: [arr[i + 1], arr[i + 2], arr[i + 3], arr[i + 4]],
     }
-    data.puzzle.push(category)
+    puzzle.push(category)
   }
-  const author = arr[AUTHOR_INPUT_INDEX]
-  if (author) data.author = author
 
-  return data
+  return puzzle
 }
 
 function values2array(formData: FormData) {

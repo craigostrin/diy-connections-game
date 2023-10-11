@@ -1,4 +1,5 @@
 import { formatPuzzleData } from "@/lib/puzzle-data"
+import { supabase } from "@/lib/supabase"
 import React from "react"
 
 function PuzzleCreator() {
@@ -8,9 +9,7 @@ function PuzzleCreator() {
     const formData = new FormData(form as HTMLFormElement)
     const puzzleData = formatPuzzleData(formData)
 
-    //TODO upload data
-
-    alert(`Good job, ${puzzleData.author}!`)
+    alert(`Good job, ${formData.get("author")}!`)
   }
 
   const categories: React.ReactNode[] = []
