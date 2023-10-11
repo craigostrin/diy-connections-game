@@ -25,8 +25,8 @@ const router = createBrowserRouter([
         element: <Create />,
       },
       {
-        path: "/play/:id",
-        element: <Play id={0} />,
+        path: "/play/:puzzleId",
+        element: <Play />,
       },
     ],
   },
