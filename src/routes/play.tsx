@@ -1,3 +1,4 @@
+import Answer from "@/components/Answer"
 import { getPuzzleById, getRandomPuzzle } from "@/lib/db-api"
 import { Puzzle } from "@/types/supabase.types"
 import { useLoaderData } from "react-router"
@@ -20,9 +21,20 @@ export async function loader({ params }: any) {
 function Play() {
   const { data: puzzle } = useLoaderData() as any
 
+  let answersSelected = 0
+
   return (
     <div>
       <p>This is where you'll see {`${puzzle.author}'s`} puzzle.</p>
+      <Answer
+        text={"test"}
+        canSelect={() => answersSelected < 4}
+        onToggle={(isSelected) => {
+          if (isSelected) answersSelected++
+          else answersSelected--
+          console.log(answersSelected)
+        }}
+      />
     </div>
   )
 }
