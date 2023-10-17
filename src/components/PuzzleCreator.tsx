@@ -11,10 +11,10 @@ function PuzzleCreator() {
     const solution = formatSolution(formData)
     const author = formData.get("author")?.toString()
 
-    const { error } = await insertPuzzle(solution, author)
+    const { data, error } = await insertPuzzle(solution, author)
 
     if (error) alert(error.message)
-    else {
+    else if (data) {
       console.log(`Nice job, ${author}. Redirecting you now...`)
       //TODO REDIRECT TO NEW PUZZLE PAGE
     }
