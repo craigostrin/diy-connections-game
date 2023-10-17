@@ -1,4 +1,4 @@
-import { formatPuzzleData } from "@/lib/puzzle-data"
+import { formatSolution } from "@/lib/puzzle-data"
 import { supabase } from "@/lib/supabase"
 import React from "react"
 
@@ -7,12 +7,13 @@ function PuzzleCreator() {
     event.preventDefault()
     const form = event.target
     const formData = new FormData(form as HTMLFormElement)
-    const puzzleData = formatPuzzleData(formData)
 
-    const puzzle = JSON.stringify(puzzleData)
+    const solution = formatSolution(formData)
     const author = formData.get("author")?.toString()
 
-    const { error } = await supabase.from("puzzles").insert({ author, puzzle })
+    const { error } = await supabase
+      .from("puzzles")
+      .insert({ author, solution })
 
     if (error) alert(error.message)
     else {

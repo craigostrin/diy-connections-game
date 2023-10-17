@@ -14,19 +14,19 @@ export interface Database {
           author: string
           created_at: string
           id: number
-          puzzle: Json
+          solution: Json
         }
         Insert: {
           author?: string
           created_at?: string
           id?: number
-          puzzle: Json
+          solution: Json
         }
         Update: {
           author?: string
           created_at?: string
           id?: number
-          puzzle?: Json
+          solution?: Json
         }
         Relationships: []
       }

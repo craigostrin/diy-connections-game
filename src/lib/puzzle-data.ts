@@ -1,3 +1,5 @@
+import { Json } from "@/types/supabase-generated.types"
+
 const AUTHOR_INPUT_INDEX = 20
 
 export type PuzzleData = CategoryData[]
@@ -8,7 +10,7 @@ export type CategoryData = {
 
 //TODO validation: each answer and desc should be unique
 // Extremely hard-coded for 4x4 puzzle
-export function formatPuzzleData(formData: FormData): PuzzleData {
+export function formatSolution(formData: FormData): Json {
   //* Map values to array for easier iterating
   const arr = values2array(formData)
 
@@ -22,7 +24,7 @@ export function formatPuzzleData(formData: FormData): PuzzleData {
     puzzle.push(category)
   }
 
-  return puzzle
+  return JSON.stringify(puzzle)
 }
 
 function values2array(formData: FormData) {
