@@ -32,7 +32,27 @@ export interface Database {
       }
     }
     Views: {
-      [_ in never]: never
+      random_puzzles: {
+        Row: {
+          author: string | null
+          created_at: string | null
+          id: number | null
+          solution: Json | null
+        }
+        Insert: {
+          author?: string | null
+          created_at?: string | null
+          id?: number | null
+          solution?: Json | null
+        }
+        Update: {
+          author?: string | null
+          created_at?: string | null
+          id?: number | null
+          solution?: Json | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
