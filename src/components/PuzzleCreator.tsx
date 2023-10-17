@@ -3,13 +3,22 @@ import { supabase } from "@/lib/supabase"
 import React from "react"
 
 function PuzzleCreator() {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const form = event.target
     const formData = new FormData(form as HTMLFormElement)
     const puzzleData = formatPuzzleData(formData)
 
-    alert(`Good job, ${formData.get("author")}!`)
+    const puzzle = JSON.stringify(puzzleData)
+    const author = formData.get("author")?.toString()
+
+    const { error } = await supabase.from("puzzles").insert({ author, puzzle })
+
+    if (error) alert(error.message)
+    else {
+      console.log(`Nice job, ${author}. Redirecting you now...`)
+      //TODO REDIRECT TO NEW PUZZLE PAGE
+    }
   }
 
   const categories: React.ReactNode[] = []
@@ -31,6 +40,7 @@ function PuzzleCreator() {
             name="author"
             type="text"
             placeholder="Author (that's you!)"
+            defaultValue={"anonymous"}
           />
           <button
             className="grow bg-pink-300 rounded-md px-4 py-2 border-pink-500 border-2 hover:bg-pink-400 active:bg-pink-500"
