@@ -4,7 +4,7 @@ import "./index.css"
 import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom"
 import ErrorPage from "./ErrorPage.tsx"
 import Create from "./routes/Create.tsx"
-import Play from "./routes/Play.tsx"
+import Play, { loader as puzzleLoader } from "./routes/Play.tsx"
 import RootLayout from "./layouts/RootLayout.tsx"
 
 const router = createBrowserRouter([
@@ -18,15 +18,17 @@ const router = createBrowserRouter([
       },
       {
         path: "/play",
-        element: <Play random />,
-      },
-      {
-        path: "/create",
-        element: <Create />,
+        element: <Play />,
+        loader: puzzleLoader,
       },
       {
         path: "/play/:puzzleId",
         element: <Play />,
+        loader: puzzleLoader,
+      },
+      {
+        path: "/create",
+        element: <Create />,
       },
     ],
   },

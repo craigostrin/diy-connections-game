@@ -1,16 +1,28 @@
-type PlayProps = {
-  random?: boolean
-  id?: number
+import { getPuzzleById, getRandomPuzzle } from "@/lib/db-api"
+import { Puzzle } from "@/types/supabase.types"
+import { useLoaderData } from "react-router"
+
+export async function loader({ params }: any) {
+  if (params.puzzleId) {
+    const puzzle = await getPuzzleById(params.puzzleId)
+    return puzzle
+  }
+
+  const puzzle = await getRandomPuzzle()
+  return puzzle
 }
 
-function Play({ random, id }: PlayProps) {
+// type PlayProps = {
+//   random?: boolean
+//   id?: number
+// }
+
+function Play() {
+  const { data: puzzle } = useLoaderData() as any
+
   return (
     <div>
-      <p>
-        {random
-          ? "This page will show a random puzzle that's been created by someone like you!"
-          : `This page will show puzzle id ${id}!`}
-      </p>
+      <p>This is where you'll see {`${puzzle.author}'s`} puzzle.</p>
     </div>
   )
 }
